@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>NakshaJS</title>
+  <%- _h_asset_css('css/reset.css'); %>
+  <%- _h_asset_css('css/generic.css'); %>
+  <%- _h_asset_css('css/main.css'); %>
+  <% if (locals.css) { %>
+  <% for (var i=0; i<locals.css.length; ++i) { %>
+  <%- _h_asset_css(locals.css[i]) %>
+  <% } %>
+  <% } %>
+  <%- _h_asset_js('libs/jquery-3.2.1.min.js') %>
+  <%- _h_asset_js('libs/jquery.form.4.2.1.min.js') %>
+  <%- _h_asset_js('js/common.js') %>
+  <%- _h_asset_js('js/exim_status.js') %>
+  <% if (locals.js) { %>
+  <% for (var i=0; i<locals.js.length; ++i) { %>
+  <%- _h_asset_js(locals.js[i]) %>
+  <% } %>
+  <% } %>
+  <% if (locals._session_user_id) { %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      <% if (locals._session_export_ids && locals._session_export_ids.length > 0) { %>
+      ExportStatus.checkExports('<%= _session_export_ids %>');
+      <% } else { %>
+      ExportStatus.checkExports('[]');
+      <% } %>
+      <% if (locals._session_import_ids && locals._session_import_ids.length > 0) { %>
+      ImportStatus.checkImports('<%= _session_import_ids %>');
+      <% } else { %>
+      ImportStatus.checkImports('[]');
+      <% } %>
+    });
+  </script>
+  <% } %>
+</head>
+<body>
+  <div id="container">
+    <div id="header">
+      <h1>NakshaJS</h1>
+      <nav id="menu-links">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/maps/index">Published Maps</a>
+        <a href="/exports/index">Exports</a>
+        <a href="/profile">Profile</a>
+        <a href="/logout">Log Out</a>
+      </nav>
+    </div>
+    <div id="content">

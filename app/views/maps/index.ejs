@@ -1,0 +1,14 @@
+<%- include('/layouts/header.ejs') -%>
+<div id="page-title">Published Maps</div>
+<div class="col100p-np mb10">
+  <% for (var i=0; i<maps.length; ++i) { %>
+  <div class="published-map-div">
+    <a href="/maps/<%= maps[i]['id'] %>/show"><%= maps[i]['name'] %></a>
+  </div>
+  <% } %>
+  <div class="pagination-div">
+    <p class="mr10"><%- pagination_links %></p>
+    <p><%= pagination_text %></p>
+  </div>
+</div>
+<%- include('/layouts/footer.ejs') -%>

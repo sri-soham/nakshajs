@@ -1,0 +1,30 @@
+{
+  "src_folders": ["test/functional"],
+  "webdriver": {
+    "start_process": true,
+    "server_path": "node_modules/.bin/geckodriver",
+    "port": "4444",
+    "request_timeout_options": 2000,
+    "retry_attempts": 5,
+    "cli_args": [
+      "--log", "debug"
+    ]
+  },
+
+  "test_settings": {
+    "default": {
+      "desiredCapabilities": {
+        "browserName": "firefox",
+        "alwaysMatch": {
+          "moz:firefoxOptions": {
+            "args": ["--headless"]
+          }
+        }
+      }
+    }
+  },
+
+  "output_folder": "test/tmp/nightwatch_output",
+
+  "log_path": "test/tmp/logs/nightwatch.log"
+}

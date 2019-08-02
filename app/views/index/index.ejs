@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Naksha</title>
+  <%- _h_asset_css('css/reset.css') %>
+  <%- _h_asset_css('css/generic.css') %>
+  <%- _h_asset_css('css/main.css') %>
+  <%- _h_asset_js('libs/jquery-3.2.1.min.js') %>
+  <%- _h_asset_js('libs/jquery.form.4.2.1.min.js') %>
+  <%- _h_asset_js('js/common.js') %>
+</head>
+<body>
+  <div id="login-div">
+    <h1>Naksha</h1>
+    <% if (locals.errors) { %>
+    <div class="errors"><%- locals.errors.join("<br />"); %></div>
+    <% } %>
+    <form name="frm_login" method="post" action="">
+      <table class="for-form">
+        <tr>
+          <td>UserName: </td>
+          <td><input type="text" name="username" /></td>
+        </tr>
+        <tr>
+          <td>Password: </td>
+          <td><input type="password" name="password" /></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td><input type="submit" name="submit1" value="Log In" /></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</body>
+</html>

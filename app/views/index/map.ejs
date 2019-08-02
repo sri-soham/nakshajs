@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Naksha - <%= map_details['name'] %></title>
+  <%- _h_asset_css('libs/leaflet-1.1.0/leaflet.css') %>
+  <style type="text/css">
+    html, body {
+      width: 100%;
+      height: 100%;
+      padding: 0px;
+      margin: 0px;
+      border: 0px;
+    }
+    #map-div {
+      position: absolute;
+      margin: 0px;
+      padding: 0px;
+      border: 0px;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      background-color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div id="map-div"></div>
+  <%- _h_asset_js('libs/leaflet-1.1.0/leaflet.js') %>
+  <%- _h_asset_js('libs/leaflet-1.1.0/leaflet.utfgrid.js') %>
+  <% if (is_google_maps) { %>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%= user_details['google_maps_key'] %>" async defer></script>
+  <%- _h_asset_js('libs/leaflet-1.1.0/Leaflet.GoogleMutant.js') %>
+  <% } %>
+  <% if (is_bing_maps) { %>
+  <%- _h_asset_js('libs/leaflet-1.1.0/Bing.js') %>
+  <% } %>
+  <% if (is_yandex_maps) { %>
+  <script type="text/javascript" src="http://api-maps.yandex.ru/2.0/?load=package.map&amp;lang=en-GB"></script>
+  <%- _h_asset_js('libs/leaflet-1.1.0/Yandex.js') %>
+  <% } %>
+  <%- _h_asset_js('libs/jquery-3.2.1.min.js') %>
+  <%- _h_asset_js('js/naksha_map.js') %>
+  <%- _h_asset_js('js/show_map.js') %>
+  <script type="text/javascript">
+  <% if (is_bing_maps) { %>
+    ShowMap.setBindsMapKey("<%= user_details['bing_maps_key'] %>");
+  <% } %>
+    ShowMap.init(
+      'map-div',
+      "<%= user_details['schema_name'] %>",
+      "<%= map_details['base_layer'] %>",
+      <%- JSON.stringify(layer_data) %>,
+      <%- JSON.stringify(extents) %>
+    );
+  </script>
+</body>
+</html>

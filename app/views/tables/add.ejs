@@ -1,0 +1,93 @@
+<%- include('/layouts/header.ejs') -%>
+<div id="page-title">New Table</div>
+<div class="col100p-np cols-parent">
+  <div class="col-box col45p">
+    <div class="inner-box">
+      <div class="inner-box-header">Allowed formats</div>
+      <div class="inner-box-content">
+        <ul class="disc pl10">
+          <li>ESRI Shape File (A zip file containing .dbf, .prj, .qpj, .shp and .shx</li>
+          <li>CSV (First line should be a header with column names; the_geom is mandatory)</li>
+          <li>GeoJSON</li>
+          <li>KML</li>
+        </ul>
+      </div>
+    </div>
+    <div class="inner-box mt20">
+      <div class="inner-box-header">Allowed feature types</div>
+      <div class="inner-box-content">
+        <ul class="mb10 disc pl10">
+          <li>Point</li>
+          <li>Line</li>
+          <li>Polygon</li>
+        </ul>
+        Note: Only one feature type is allowed per table.
+      </div>
+    </div>
+  </div>
+   <div class="col-box col55p-wgl">
+    <div id="accordion">
+      <h3>Create table by uploading file</h3>
+      <div>
+        <form name="frm_table_add" id="frm_table_add" method="post" action="/tables/add" enctype="multipart/form-data" class="pos-rel">
+          <table class="for-form">
+            <tr>
+              <td>Name: </td>
+              <td><input type="text" name="name" class="col100p" /></td>
+            </tr>
+            <tr>
+              <td>File: </td>
+              <td><input type="file" name="file" /></td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td><input type="submit" name="submit1" value="Upload" /></td>
+            </tr>
+          </table>
+        </form>
+      </div>
+      <h3>Create Empty Table</h3>
+      <div>
+        <form name="frm_table_add_empty" id="frm_table_add_empty" method="post" action="/tables/add?is_empty=1" class="pos-rel">
+          <table class="for-form">
+            <tr>
+              <td>Name: </td>
+              <td><input type="text" name="name" class="col100p" /></td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td><input type="submit" name="submit1" value="Create" /></td>
+            </tr>
+          </table>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  function set_upload_form() {
+    new naksha.AjaxForm({
+      form: '#frm_table_add',
+      success_callback: function(rt) {
+        naksha.Alert.show('Import started. You will be notified after completion');
+        ImportStatus.trackImport(rt['id']);
+      }
+    });
+  }
+
+  function set_empty_form() {
+    new naksha.AjaxForm({
+      form: '#frm_table_add_empty',
+      success_callback: function(rt) {
+        window.location.href = rt['url']
+      }
+    });
+  }
+
+  $(document).ready(function() {
+    $('#accordion').accordion();
+    set_upload_form();
+    set_empty_form();
+  });
+</script>
+<%- include('/layouts/footer.ejs') -%>

@@ -1,0 +1,34 @@
+<%- include('/layouts/header.ejs'); -%>
+<div id="page-title">Exports</div>
+<table class="col100p with-header with-row-highlight" id="exports-list">
+  <tr>
+    <th>Name</th>
+    <th class="col150">Type</th>
+    <th class="col100">Status</th>
+    <th class="col100">Download</th>
+    <th class="col50">Delete</th>
+    <th class="col200">Created At</th>
+    <th class="col200">Updated At</th>
+  </tr>
+  <% for (var i=0; i<exports.length; ++i) { %>
+  <tr>
+    <td class="pos-rel"><%= exports[i]['name'] %></td>
+    <td><%= exports[i]['type'] %></td>
+    <td><%= exports[i]['status'] %></td>
+    <td><%- exports[i]['download_link'] %></td>
+    <td><a href="#" id="de_<%= exports[i]['id'] %>" class="del-export">Delete</a></td>
+    <td><%= exports[i]['created_at'] %></td>
+    <td><%= exports[i]['updated_at'] %></td>
+  </tr>
+  <% } %>
+</table>
+<div class="pagination-div">
+  <p class="mr10"><%- pagination_links %></p>
+  <p><%= pagination_text %></p>
+</div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    Export.init();
+  });
+</script>
+<%- include('/layouts/footer.ejs'); -%>
