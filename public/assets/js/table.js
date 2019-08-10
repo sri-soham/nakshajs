@@ -96,10 +96,7 @@ var Table = (function() {
   function geom_type_from_val(val) {
     var part, parts;
 
-    if (val.length === 0) {
-      part = '';
-    }
-    else {
+    if (val && val.length > 0) {
       part = val.split('(')[0];
       parts = part.split(';');
       if (parts.length === 2) {
@@ -108,6 +105,9 @@ var Table = (function() {
       else {
         part = '';
       }
+    }
+    else {
+      part = '';
     }
 
     return part;

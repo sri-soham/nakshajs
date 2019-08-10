@@ -1,8 +1,9 @@
 *.swp
 *.DS_Store
 *.*~
-.env
-.testing.env
+/.env
+/.testing.env
+/forever.json
 geckodriver.log
 /node_modules/
 /tmp/exports/*

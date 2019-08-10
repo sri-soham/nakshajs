@@ -155,6 +155,8 @@ BEGIN
          VALUES (id, hash, geometry_column, query, style, naksha_geom_type, infowindow, hash);
   
   EXECUTE 'UPDATE ' || table_name::regclass || ' SET created_at = current_timestamp, updated_at = current_timestamp';
+
+  EXECUTE 'SELECT setval(pg_get_serial_sequence(''' || table_name::regclass || ''', ''naksha_id''), MAX(naksha_id)) FROM ' || table_name::regclass;
 END;
 $$ LANGUAGE plpgsql;
 

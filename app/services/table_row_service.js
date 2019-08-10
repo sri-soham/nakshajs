@@ -81,7 +81,7 @@ class TableRowService extends BaseService {
             }
             result = this.successResult({
                 'row': {
-                    'naksha_id': naksha_id,
+                    'naksha_id': naksha_id['naksha_id'],
                     'update_hash': update_hash
                 }
             });
