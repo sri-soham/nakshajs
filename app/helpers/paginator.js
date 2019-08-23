@@ -45,6 +45,9 @@ class Paginator {
         if (last > this._count) {
             last = this._count;
         }
+        if (first > this._count) {
+            first = this._count;
+        }
         return '(' + first + ' to ' + last + ' of ' + this._count + ')';
     }
 
