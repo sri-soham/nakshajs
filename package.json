@@ -20,7 +20,7 @@
     "dotenv": "^8.0.0",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
-    "express-fileupload": "^1.1.4",
+    "express-fileupload": "^1.1.9",
     "express-session": "^1.16.1",
     "mapnik": "^4.2.1",
     "pg": "^7.11.0",
